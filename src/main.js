@@ -14,10 +14,10 @@
     id: 0,
     edit: false,
     color: `black`,
-    title: `This is card with missing deadline`,
+    title: `It is example of repeating task. It marks by wave.`,
     tags: [`repeat`, `cinema`, `entertaiment`],
-    date: ``,
-    time: ``,
+    date: `23 September`,
+    time: `11:15 PM`,
     repeat: true,
     repeatDays: [`mo`, `fr`],
     img: `img/sample-img.jpg`
