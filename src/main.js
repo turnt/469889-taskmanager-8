@@ -1,5 +1,3 @@
-'use strict';
-
 (function () {
   const dummyFiltersData = [
     {name: `all`, count: 15, checked: true},
@@ -45,6 +43,13 @@
     `;
   };
   const mergeFilters = (node) => createFilterTemplate(node);
+  const buildFiltersTemplate = (arr = [], cb) => {
+    if (typeof cb === `function`) {
+      return arr.map(cb).join(``);
+    }
+
+    return ``;
+  };
 
   const cardMods = [`edit`, `color`, `repeat`];
   const cardControlsTemplate = `
@@ -251,15 +256,7 @@
     `;
   };
 
-  const buildNodesTemplate = (arr = [], cb) => {
-    if (typeof cb === `function`) {
-      return arr.map(cb).join(``);
-    }
-
-    return ``;
-  };
-
-  const setEvents = (arr = [], {eventName, cb} = {}) => {
+  const setEvents = (arr = [], {eventName = `click`, cb} = {}) => {
     const setNodeEvent = (node) => {
       node.addEventListener(eventName, cb);
     };
@@ -282,7 +279,7 @@
   };
 
   const filtersContainer = document.querySelector(`.main__filter`);
-  filtersContainer.innerHTML = buildNodesTemplate(dummyFiltersData, mergeFilters);
+  filtersContainer.innerHTML = buildFiltersTemplate(dummyFiltersData, mergeFilters);
 
   const filtersInputs = document.querySelectorAll(`.filter__input`);
   const tasksContainer = document.querySelector(`.board__tasks`);
