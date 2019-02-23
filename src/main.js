@@ -1,5 +1,6 @@
 import createFilters from './components/create-filters';
 import createCards from './components/create-task-cards';
+import {setEvents} from './utils/utils';
 
 const dummyFiltersData = [
   {name: `all`, count: 15, checked: true},
@@ -24,17 +25,6 @@ const dummyCardData = {
 };
 const staticAmountOfCards = 7;
 
-const setEvents = (arr = [], {eventName = `click`, cb} = {}) => {
-  const setNodeEvent = (node) => {
-    node.addEventListener(eventName, cb);
-  };
-
-  if (typeof cb === `function`) {
-    return arr.forEach(setNodeEvent);
-  }
-
-  return false;
-};
 
 const filtersContainer = document.querySelector(`.main__filter`);
 filtersContainer.innerHTML = createFilters(dummyFiltersData);
