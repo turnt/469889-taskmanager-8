@@ -18,10 +18,9 @@ const createFilterTemplate = ({name = ``, checked = false, count = 0} = {}) => {
     </label>
   `;
 };
-const mergeFilters = (node) => createFilterTemplate(node);
 
 const buildFiltersTemplate = (arr = []) => {
-  return arr.map(mergeFilters).join(``);
+  return arr.map(createFilterTemplate).join(``);
 };
 
 export default buildFiltersTemplate;

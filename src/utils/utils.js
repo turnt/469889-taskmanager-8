@@ -10,4 +10,13 @@ const setEvents = (arr = [], {eventName = `click`, cb} = {}) => {
   return false;
 };
 
-export {setEvents};
+const getFirstTrueKey = (obj = {}) => {
+  const keys = Object.keys(obj);
+
+  return keys.filter((key) => obj[key] === true)[0];
+};
+
+export {
+  setEvents,
+  getFirstTrueKey
+};
