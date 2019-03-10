@@ -26,7 +26,7 @@ function getRandomItems(arr, count) {
 
     result.add(arr[randomIndex]);
 
-    if (result.size > oldLength) {
+    if (result.size !== 0) {
       count--;
     }
 
