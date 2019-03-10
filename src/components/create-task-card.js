@@ -1,4 +1,4 @@
-import {getFirstTrueKey} from '../utils/utils';
+import {getFirstTrueKey, getRandomItems} from '../utils/utils';
 
 const cardControlsTemplate = `
   <div class="card__control">
@@ -117,7 +117,7 @@ const createCardDeadlineTemplate = (card = {}, time = ``, date = ``) => {
   `;
 };
 
-const createCardTagsTemplate = (tags = new Set()) => [...tags].map((tag) => `
+const createCardTagsTemplate = (tags = new Set()) => getRandomItems([...tags], 3).map((tag) => `
   <span class="card__hashtag-inner">
     <input
       type="hidden"
@@ -170,17 +170,16 @@ const createCardImgTemplate = (src = `img/add-photo.svg`) => `
   </label>
 `;
 
-const createCardColorsTemplate = (colors = {}, id = 0) => {
-  const colorsNames = Object.keys(colors);
-
-  return colorsNames.map((color) => `
+const createCardColorsTemplate = (currentColor = `black`, id = 0) => {
+  const colors = [`black`, `yellow`, `blue`, `green`, `pink`];
+  return colors.map((color) => `
     <input
       type="radio"
       id="color-${color}-${id}"
-      class="card__color-input card__color-input--black visually-hidden"
+      class="card__color-input card__color-input--${color} visually-hidden"
       name="color"
       value="${color}"
-      ${colorsNames[color] ? `checked` : ``}
+      ${color === currentColor ? `checked` : ``}
     />
     <label
       for="color-${color}-${id}"
@@ -191,7 +190,7 @@ const createCardColorsTemplate = (colors = {}, id = 0) => {
 
 const createCardTemplate = (card = {}) => {
   const modifiers = [
-    getFirstTrueKey(card.colors) || `black`,
+    card.color,
     getFirstTrueKey(card.repeatingDays) && `repeat`
   ];
   let cardClasses = `card`;
@@ -217,7 +216,7 @@ const createCardTemplate = (card = {}) => {
             <div class="card__colors-inner">
               <h3 class="card__colors-title">Color</h3>
               <div class="card__colors-wrap">
-                ${createCardColorsTemplate(card.colors, card.id)}
+                ${createCardColorsTemplate(card.color, card.id)}
               </div>
             </div>
           </div>

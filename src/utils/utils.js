@@ -16,7 +16,30 @@ const getFirstTrueKey = (obj = {}) => {
   return keys.filter((key) => obj[key] === true)[0];
 };
 
+function getRandomItems(arr, count) {
+  const result = new Set();
+  const length = arr.length;
+
+  while (count > 0) {
+    const oldLength = result.size;
+    const randomIndex = Math.floor(Math.random() * length);
+
+    result.add(arr[randomIndex]);
+
+    if (result.size > oldLength) {
+      count--;
+    }
+
+    if (result.size >= length) {
+      break;
+    }
+  }
+
+  return [...result];
+}
+
 export {
   setEvents,
-  getFirstTrueKey
+  getFirstTrueKey,
+  getRandomItems
 };
