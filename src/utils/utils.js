@@ -21,7 +21,6 @@ function getRandomItems(arr, count) {
   const length = arr.length;
 
   while (count > 0) {
-    const oldLength = result.size;
     const randomIndex = Math.floor(Math.random() * length);
 
     result.add(arr[randomIndex]);
