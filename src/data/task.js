@@ -43,7 +43,7 @@ const getTaskData = (id = 0) => {
     },
     picture: `//picsum.photos/100/100?r=${Math.random()}`,
     isFavorite: generateRandomBool(),
-    isDone: generateRandomBool()
+    isDone: generateRandomBool(),
   };
 };
 

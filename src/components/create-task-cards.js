@@ -1,9 +1,13 @@
 import createCard from './create-task-card';
 
 const createCardsTemplate = (cardData, amount = 0) => {
-  const makeCard = (val, id) => createCard(cardData(id));
+  if (typeof cardData === `function`) {
+    const makeCard = (val, id) => createCard(cardData(id));
 
-  return new Array(amount).fill(``).map(makeCard).join(``);
+    return new Array(amount).fill(``).map(makeCard).join(``);
+  }
+
+  return ``;
 };
 
 export default createCardsTemplate;

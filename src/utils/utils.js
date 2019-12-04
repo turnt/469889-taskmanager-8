@@ -16,7 +16,7 @@ const getFirstTrueKey = (obj = {}) => {
   return keys.filter((key) => obj[key] === true)[0];
 };
 
-const getRandomItems = (arr, count) => {
+const getRandomItems = (arr = [], count = 0) => {
   const result = new Set();
   const length = arr.length;
 
